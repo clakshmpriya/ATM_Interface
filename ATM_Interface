@@ -1,0 +1,93 @@
+import java.util.Scanner;
+class ATM_Interface 
+{
+	private String username;
+	private String id;
+	private String pin;
+	public ATM_Interface(String username,String id,String pin)
+	{
+		this.username = username;
+		this.id = id;
+		this.pin = pin;
+	}
+	public boolean authenticate(String enteredusername,String enteredid,String enteredpin)
+	{
+		return username.equals(enteredusername) && id.equals(enteredid) && pin.equals(enteredpin);
+	}
+          public static void main(String[] args)
+			{
+			  ATM_Interface useraccount = new ATM_Interface("Lakshmi","321","Password@789");
+			  Scanner sc = new Scanner(System.in);
+			  System.out.println("Enter username:");
+			  String enteredusername = sc.nextLine();
+			  System.out.println("Enter id:");
+			  String enteredid = sc.nextLine();
+			  System.out.println("Enter PIN:");
+			  String enteredpin = sc.nextLine();
+			  if(useraccount.authenticate(enteredusername,enteredid,enteredpin))
+				{ 
+			double bal = 100000,withdraw,deposit,transfer;
+			System.out.println("1.Withdraw 2.Deposit 3.Transfer 4.CheckBalance 5.Exit");
+			System.out.println("Choose the operation you want to perform");
+			int choice = sc.nextInt();
+			switch(choice)
+			{
+				case 1:
+				System.out.println("Enter money to be withdrawn");
+				withdraw = sc.nextInt();
+				if(bal>=withdraw)
+				{
+					bal = bal - withdraw;
+					System.out.println("Amount of"  +withdraw+  "is withdrawn from your account");
+					System.out.println("Remaining balance:" +bal);
+				}
+				else
+				{
+					System.out.println("Insufficient balance");
+				}
+				break;
+				case 2:
+				System.out.println("Enter money to be deposited");
+				deposit = sc.nextInt();
+				if(deposit>0)
+				{
+				bal = bal+deposit;
+				System.out.println("Amount of" +deposit+ "is deposited in your account");
+				System.out.println("Remaining balance:" +bal);
+				}
+				else
+					{
+					System.out.println("Enter valid input");
+					}
+					break;
+					case 3:
+						System.out.println("Enter recipient's account number");
+					String accountNo = sc.nextLine();
+						System.out.println("Enter money to be transferred");
+					transfer = sc.nextInt();
+					if(transfer<=bal && transfer>0)
+					{
+						bal = bal-transfer;
+						System.out.println("Amount of"  +transfer+  "is transferred from your account");
+						System.out.println("Remaining balance:" +bal);
+					}
+					else
+					{
+						System.out.println("Insufficient balance");
+					}
+					break;
+                    case 4:
+						System.out.println(" Check Balance:" +bal);
+					break;
+					case 5:
+						System.out.println("Exit! Thank You");
+				}
+			}
+			else
+				{
+				System.out.println("Authentication Failed! Enter the valid input");
+			}
+			}
+}
+			
+			
